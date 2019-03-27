@@ -36,13 +36,195 @@ MetlakatlaDateTime <- with_tz(twDateTime,tzone="America/Metlakatla")
 
 ```{r}
 twdt<-ymd_hms("2019-03-27 15:26:00", tz="Asia/Taipei")
-nydt<-with_tz(twdt,tzone = "America/Metlakatla")
-nydt
+usdt<-with_tz(twdt,tzone = "America/Metlakatla")
+usdt
+```
+
+請問twDateTime與LisbonDateTime的UTC時間為何？（以螢幕顯示為主）
+```{r}
+typeof(MetlakatlaDateTime)
+as.double(twDateTime)
+as.double(MetlakatlaDateTime)
+```
+
+#Other date time format
+
+Q:你會如何輸入Google的date time讓R理解呢？
+```{r}
+TWDT <- dmy_h("27-03-2019 15")
+TWDT
+```
+
+```{r}
+usdt<- dmy_h("26-03-2019 23")
+usdt
+```
+
+Q:請讓電腦理解以下兩種日期：
+
+1.“2018-09-11”
+
+2.“March 3, 2019”
+
+```{r}
+today <- ymd("2018-09-11")
+today
+today1 <- mdy("March 3, 2019")
+today1
+```
+
+```{r}
+ymd("1970-01-01") %>% as.integer
+ymd("1970-01-02") %>% as.integer
+ymd("2019-03-11") %>% as.integer
+```
+
+5.1 Mathematical operations
+
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+```
+
+```{r}
+a+bL
+class(aL+bL)
+```
+
+```{r}
+aL+bL
+class(aL+bL)
+
+class(aL*bL)
+class(aL/bL)
+```
+Q:請問a+bL與aL+bL的class分別是什麼？如果用-和*呢？
+```{r}
+a <- c(1, 5, -3)
+b <- c(0.5, 12, 2)
+a+b
+aL <- c(1L, 5L, -3L)
+bL <- c(-2L, -4L, 8L)
+aL+bL
+class(a-b)
+```
+
+```{r}
+c <- 4
+
+c+a
+```
+```{r}
+a^b
+a %% b
+```
+Q:twDateTime可以進行數字加減運算嗎？如果可以它是什麼意思？
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+```
+
+```{r}
+twDateTime
+twDateTime +1
+```
+Q:請計算“2019-08-11”與“2000-02-01”的兩個日期的相減。相減完之後的值具有什麼class?
+```{r}
+ymd("2019-08-11")-ymd("2000-02-01")
+```
+```{r}
+startingDate <- ymd("2019-02-17")
+startingDate + years(1)
+```
+```{r}
+startingDate <- ymd("2019-02-17")
+startingDate + dyears(1)
+```
+```{r}
+x <- 5
+y <- 7
+
+x2 <- c(1,5,10)
+y2 <- c(-1,5,20)
+```
+
+```{r}
+x >= y
+x == y
+x < y
+```
+```{r}
+x = y #與x< -y 相同
+```
+```{r}
+x2
+y2
+x2 < y2
+```
+```{r}
+x2
+x2 > 4
+```
+```{r}
+x3 <- c("小明","小花")
+y3 <- c("小明","小華")
+```
+```{r}
+x3 == y3
+```
+```{r}
+
 ```
 
 
+```{r}
+x4 <- c(1,5,8)
+y4 <- c(5,8)
 
+x4
+y4
+x4 %in% y4
+```
 
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+y5 <- c("台北市","新北市")
+
+x5
+y5
+x5 %in% y5
+```
+
+```{r}
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+is.na(x2)
+```
+
+```{r}
+x2
+y2 
+x2 == y2
+```
+
+```{r}
+sum(x2)
+sum(x2,na.rm=F)
+sum(x2,na.rm=T)
+
+```
+
+```{r}
+0/0
+```
+
+```{r}
+
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
