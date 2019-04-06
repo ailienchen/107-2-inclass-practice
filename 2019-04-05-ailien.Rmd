@@ -89,18 +89,201 @@ head(currency)
 sum(currency=="日圓JPY/USD")
 ```
 
+#5.4 Logical Operators
+
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x5 %in% greatTaipei
+!(x5 %in% greatTaipei)
+```
+
+```{r}
+y5 <- c("女","男","女")
+
+y5=="女"
+!(y5=="女")
+```
+
+>圈圈是要圈出"Relational Operation"為真的元素位置
+
+```{r}
+x5 %in% greatTaipei
+y5=="女"
+(x5 %in% greatTaipei) & (y5=="女")#同時(&)來自於greattaipei又是女性
+```
+
+```{r}
+which((x5 %in% greatTaipei) & (y5=="女"))#第一筆料同時滿足
+```
+
+```{r}
+x5
+y5
+```
+
+```{r}
+(x5 %in% greatTaipei) 
+(y5=="女")
+(x5 %in% greatTaipei) | (y5=="女")#或(or)；滿足其中一個條件
+```
+
+```{r}
+which((x5 %in% greatTaipei) | (y5=="女"))
+```
+
+```{r}
+x5 %in% greatTaipei
+y5=="女"
+xor(x5 %in% greatTaipei, y5=="女")
+```
+
+```{r}
+which(xor(x5 %in% greatTaipei, y5=="女"))
+```
+
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
+
+Q1:請把date的class存成date class
+```{r}
+class(date)
+head(date)
+library(lubridate)
+date<- ymd(date)
+class(date)
+```
+
+Q2:1980-08-01之後的資料有多少筆。
+```{r}
+isafter19800801<-
+  date>= ymd("1980-08-01")
+isafter19800801
+```
+分解動作
+```{r}
+head(as.integer(date))
+as.integer(ymd("1980-08-01"))
+head(date>= ymd("1980-08-01"))
+```
+
+```{r}
+class(isafter19800801)
+sum(isafter19800801)
+```
+
+Q3:幣別為“歐元USD/EUR”的資料有多少筆。
+
+```{r}
+head(currency)
+
+```
+```{r}
+head(currency=="歐元USD/EUR")
+isEuro<- currency =="歐元USD/EUR"
+```
+
+```{r}
+sum(isEuro)
+```
+有將currency轉成factor class
+```{r}
+currency<- as.factor(currency)
+isEuro<- currency =="歐元USD/EUR"
+sum(isEuro)
+```
+
+Q4:exchangeRate有多少筆NA
+```{r}
+isExchangeRateNA<-
+  is.na(exchangeRate)
+sum(isExchangeRateNA)
+```
+Q5:排除NA後，幣別為“歐元USD/EUR”的資料有多少筆?
 
 
 
 
+```{r}
+isNotNA<- !is.na(exchangeRate)
+isEuro<- currency =="歐元USD/EUR"
+```
 
+```{r}
+satisfyBoth<-isNotNA& isEuro
+sum(satisfyBoth)
+```
+另一種先不存成isNotNA，isEuro的寫法
+```{r}
+satisfyBoth<-
+  !is.na(exchangeRate)&currency==
+  "歐元USD/EUR"
+sum(satisfyBoth)
+```
+題目練習:
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$學系
+studentID <- transcriptDataFinal$學號
+grade <- transcriptDataFinal$學期成績
+```
 
+Q1:有多少筆資料是來自經濟學系?
 
+```{r}
+sum(major=="經濟學系")
+```
 
+Q2:請問學號“5bdS6977b”同學修了多少課?
+```{r}
+sum(studentID=="5bdS6977b")
+```
 
+Q3:請問學號“5bdS6977b”有多少科成績及格?
+```{r}
+sum(studentID=="5bdS6977b"&grade>=60)
+```
 
+Q4:有多少筆資料來自經濟學系學生且為選修課?
 
+```{r}
+sum(
+  major=="經濟學系"&
+      courseType=="選")
+```
 
+Q5:在經濟學系學生且必修課程中，成績不及格佔多少比例?
+1.在經濟學系學生且必修課有多少筆?
+```{r}
+sum(
+  major=="經濟學系"&
+      courseType =="必"
+)-> 分母
+分母
+```
+
+2.其中成績不及格佔多少比例
+```{r}
+sum(
+  major=="經濟學系"&
+      courseType =="必"&
+      grade<60
+)-> 分子
+分子
+
+```
+
+```{r}
+分子/分母
+```
 
 
 
