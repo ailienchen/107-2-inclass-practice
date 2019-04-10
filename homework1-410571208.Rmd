@@ -109,8 +109,9 @@ dates
 請將submitTime轉成台灣時區，並存在答案物件twTime。
 ```{r ans22}
 library(lubridate)
-class(submitTime)
-class(dtObject)
+submitTime
+twdt<-ymd_hms("strDates <
+              - c(submitTime)") ,tz="Asia/Taipei")
 ```
 
 ### 2.3
