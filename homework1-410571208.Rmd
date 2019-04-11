@@ -108,10 +108,16 @@ dates
 ### 2.2
 請將submitTime轉成台灣時區，並存在答案物件twTime。
 ```{r ans22}
-library(lubridate)
 submitTime
-twdt<-ymd_hms("strDates <
-              - c(submitTime)") ,tz="Asia/Taipei")
+class(submitTime)
+strDates <- c("submitTime")
+dates <- as.Date(submitTime, "%m/%d/%Y") 
+dates
+Sys.time()
+```
+
+```{r}
+
 ```
 
 ### 2.3
@@ -119,11 +125,15 @@ twdt<-ymd_hms("strDates <
 
 ```{r ans23}
 
+
 ```
 
 ### 2.4
 承上題，在上題半夜間投票的學生佔總投票人數的比何為多少？（存在答案物件nightOwlVoteShare）（hint: `length()`可以計算向量的元素個數）
 ```{r ans24}
+
+
+
 
 ```
 
