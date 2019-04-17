@@ -18,6 +18,7 @@ y3 <- c("小明","小華")
 ```{r}
 x3==y3
 x3!=y3
+!(x3==y3)
 ```
 !negation
 ```{r}
@@ -34,7 +35,7 @@ currency <- exData2$幣別
 ```{r}
 head(currency)#head會顯示物件前六個元素直
 ```
-
+Q:請問這裡有幾種匯率？
 資料一進來並沒有被當成factor class
 
 ```{r}
@@ -69,7 +70,7 @@ step2_countVectorLength<-length(step1_extractLevelsVector)
 step2_countVectorLength
 ```
 
-多少比日圓資料?
+多少日圓資料?
 
 ```{r}
 head(currency)
