@@ -164,7 +164,7 @@ plasticContainer[["greenBox"]]
 6.4.4 範例：Github commit記錄
 ```{r}
 your_github_username <- "ailienchen"
-your_practice_reponame <- "107-2-inclass-practice new"
+your_practice_reponame <- "107-2-inclass-practice"
 library(httr)
 library(stringr)
 str_replace_all(
@@ -181,10 +181,33 @@ commitCheck <- content(GET(commitCheckStatement))
 
 ```
 
+#6.4.6 範例：str_split
+```{r}
+library(readr)
+filmVotingData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/podcastcompetition3.csv")
+str_replace(filmVotingData$請選擇你最喜歡的影片二部,", by"," by") -> favoriteTwo
+birthday <- filmVotingData$`出生西元年月日（驗證本人用）`
+timeStamp <- filmVotingData$Timestamp
+```
 
+```{r}
+filmVotingData$Timestamp
+filmVotingData[["Timestamp"]]
+filmVotingData`Timestamp`
+```
 
+Q:birthday只能有8位元，str_length()可計算每個元素的位元長度。請產生一個logical vector稱為logiCorrect，TRUE表示剛好8位元。
+```{r}
+filmVotingData[["birthday"]]
+str_length("birthday")
+logiCorrect <- str_length(birthday)==8
+logiCorrect
+```
 
-
+Q:只留下birthday輸入正確的人，請統計各別片名支持人數。
+```{r}
+favoriteTwo[logiCorrect]->validfavoriteTwo
+```
 
 
 
