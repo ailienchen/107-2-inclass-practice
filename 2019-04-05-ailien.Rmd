@@ -70,7 +70,7 @@ step2_countVectorLength<-length(step1_extractLevelsVector)
 step2_countVectorLength
 ```
 
-多少日圓資料?
+多少筆日圓資料?
 
 ```{r}
 head(currency)
