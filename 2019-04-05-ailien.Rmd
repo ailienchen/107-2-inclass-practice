@@ -156,7 +156,7 @@ Q1:請把date的class存成date class
 ```{r}
 class(date)
 head(date)
-library(lubridate)
+library(lubridate)#電腦認不出character所以用lubridate改成電腦看得懂的形式
 date<- ymd(date)
 class(date)
 ```
@@ -169,8 +169,8 @@ isafter19800801
 ```
 分解動作
 ```{r}
-head(as.integer(date))
-as.integer(ymd("1980-08-01"))
+head(as.integer(date))#與UTC差多少天
+as.integer(ymd("1980-08-01"))#顯示電腦存成的整數
 head(date>= ymd("1980-08-01"))
 ```
 
@@ -208,9 +208,6 @@ sum(isExchangeRateNA)
 ```
 Q5:排除NA後，幣別為“歐元USD/EUR”的資料有多少筆?
 
-
-
-
 ```{r}
 isNotNA<- !is.na(exchangeRate)
 isEuro<- currency =="歐元USD/EUR"
@@ -220,6 +217,12 @@ isEuro<- currency =="歐元USD/EUR"
 satisfyBoth<-isNotNA& isEuro
 sum(satisfyBoth)
 ```
+```{r}
+isNotNA& isEuro
+sum(isNotNA& isEuro)
+```
+
+
 另一種先不存成isNotNA，isEuro的寫法
 ```{r}
 satisfyBoth<-
