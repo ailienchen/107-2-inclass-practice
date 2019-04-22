@@ -36,7 +36,7 @@ plasticContainer <- list(
 )
 ```
 
-
+[[.]]
 ```{r}
 plasticContainer
 plasticContainer[["greenBox"]] 
@@ -45,7 +45,7 @@ plasticContainer[[1]]
 
 ```{r}
 plasticContainer[["blueBox"]]
-plasticContainer[[TRUE]]
+plasticContainer[["redBox"]]
 ```
 
 Q:greenBox包含兩個元素：paper, scissor。如果上面要取出paper，要怎麼延伸拿取？
@@ -76,8 +76,9 @@ Q:請取出前面成績單物件的個經元素。
   總經=77,
   統計=88
 )
-成績單[["個經"]]
+成績單[["個經"]]#方法一
 成績單[[1]]
+成績單[["個經"]][[1]]#方法二
 ```
 
 Q:針對studentRecord物件:
