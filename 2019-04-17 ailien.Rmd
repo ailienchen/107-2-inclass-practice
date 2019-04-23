@@ -179,8 +179,21 @@ commitCheck <- content(GET(commitCheckStatement))
 ```
 
 ```{r}
-
+commitCheckStatement
 ```
+```{r}
+commitCheck
+```
+
+```{r}
+commitCheck[[4]][["commit"]][["committer"]][["date"]]
+```
+```{r}
+commitCheck[[4]][["commit"]][["committer"]][["date"]]->commitDate
+ymd_hms(commitDate)->commitDate
+with_tz(commitDate,tzone="asia/Taipei")
+```
+
 
 #6.4.6 範例：str_split
 ```{r}
@@ -194,7 +207,7 @@ timeStamp <- filmVotingData$Timestamp
 ```{r}
 filmVotingData$Timestamp
 filmVotingData[["Timestamp"]]
-filmVotingData`Timestamp`
+filmVotingData$`Timestamp`
 ```
 
 Q:birthday只能有8位元，str_length()可計算每個元素的位元長度。請產生一個logical vector稱為logiCorrect，TRUE表示剛好8位元。
