@@ -1,0 +1,96 @@
+---
+title: "2019-04-24"
+author: "ailien"
+date: "2019年4月24日"
+output: html_document
+---
+
+```{r}
+Vec1<-c(1:6)
+Vec1
+```
+
+```{r}
+Mat1<- matrix(
+  c(1:6),2,3
+)
+Mat1
+```
+
+```{r}
+class(Mat1)
+```
+
+```{r}
+typeof(Mat1)
+```
+
+
+
+
+```{r}
+Mat2<-matrix(
+  c
+)
+```
+
+Q:
+```{r}
+MAT2 <- matrix(c("a","b","c","d"),2,2)
+MAT2
+class(MAT2)
+typeof(MAT2)
+MAT2[[2]]
+MAT2[c(T,F,F,T)]
+```
+
+
+
+#2.5 資料框 data.frame
+
+```{r}
+StuDF <- list(StuID=c(1,2,3,4,5), ##欄位名稱=欄位值
+                  name=c("小明","大雄","胖虎","小新","大白"),
+                  score=c(80,60,90,70,50))
+StuDF 
+```
+
+
+```{r}
+StuDF <- data.frame(StuID=c(1,2,3,4,5), ##欄位名稱=欄位值
+                  name=c("小明","大雄","胖虎","小新","大白"),
+                  score=c(80,60,90,70,50))
+StuDF 
+```
+
+```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+Q:以list的角度取出胖虎的資料
+```{r}
+StuDF <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuDF[["姓名"]][[3]]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
