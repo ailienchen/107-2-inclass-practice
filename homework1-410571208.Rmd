@@ -64,6 +64,7 @@ if (major[1]=="經濟系"){
 fromEcon
 
 ```
+
 ```{r}
 major <- c("經濟系","法律系","社會系","經濟系")
 fromEcon <- major == "經濟系"
@@ -75,7 +76,10 @@ fromEcon
 ```{r ans12}
 sumEcon<-as.numeric(fromEcon)
 sum(sumEcon)
+
 ```
+
+
 ```{r}
 sumEcon<-sum(fromEcon)
 sumEcon
@@ -88,6 +92,8 @@ grade*sumEcon
 meanEcon <- sum(grade*sumEcon)/sum(sumEcon)
 meanEcon
 ```
+
+
 ```{r}
 meanEcon<-sum(grade*fromEcon)/sum(fromEcon)
 meanEcon
@@ -155,7 +161,8 @@ nightOwl
 ### 2.4
 承上題，在上題半夜間投票的學生佔總投票人數的比何為多少？（存在答案物件nightOwlVoteShare）（hint: `length()`可以計算向量的元素個數）
 ```{r ans24}
-
+sum(nightOwl)
+length(nightOwl)
 ```
 
 ```{r}
@@ -230,7 +237,7 @@ credit100ChosenStudent
 ### 3.3
 請問學號為046S6f645的學生在100學年實得了多少學分？答案請存在物件earnedCredit100ChosenStudent。
 ```{r ans33}
-library(tidyverse)
+
 transcriptDataFinal%>%
   filter(studentID=="046S6f645" & schoolYear=="100"& grade>="60")->st100
   studentID <- st100$學號
