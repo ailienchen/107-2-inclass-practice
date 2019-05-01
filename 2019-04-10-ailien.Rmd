@@ -63,7 +63,7 @@ str_c(month,"月",day,"日")
 ```{r}
 month
 day
-str_c(month,day, sep="-")
+str_c(month,day, sep="/")
 
 ```
 str_split
@@ -167,6 +167,7 @@ c
 ```
 4.2010變成"2010"(hint:as.character())
 5."2010","01"合成"2010/01"
+#4、5合併
 ```{r}
 c
 b

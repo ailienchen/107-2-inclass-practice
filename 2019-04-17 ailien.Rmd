@@ -221,6 +221,7 @@ logiCorrect
 Q:只留下birthday輸入正確的人，請統計各別片名支持人數。
 ```{r}
 favoriteTwo[logiCorrect]->validfavoriteTwo
+validfavoriteTwo
 ```
 
 
