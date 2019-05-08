@@ -40,6 +40,7 @@ Q:請問這裡有幾種匯率？
 
 ```{r}
 class(currency)
+typeof(currency)
 ```
 更正為factor class
 
@@ -76,6 +77,12 @@ step2_countVectorLength
 head(currency)
 levels(currency)
 ```
+
+```{r}
+head(currency)
+sum(currency=="日圓JPY/USD")
+```
+
 
 ```{r}
 currency2<- c("日元","美元","日元")
@@ -166,6 +173,7 @@ Q2:1980-08-01之後的資料有多少筆。
 isafter19800801<-
   date>= ymd("1980-08-01")
 isafter19800801
+sum(isafter19800801)
 ```
 分解動作
 ```{r}
