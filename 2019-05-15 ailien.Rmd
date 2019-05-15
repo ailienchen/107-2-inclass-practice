@@ -143,6 +143,14 @@ exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/mas
 
 取出「期間」變數轉成date class。
 ```{r}
+class(exData3)
+names(exData3)
+exData3[[3]]
+```
+
+
+
+```{r}
 library(lubridate)
 exData3$期間<-ymd(exData3$期間)
 class(exData3$期間)
@@ -173,5 +181,122 @@ exData3[logiAsiaCrisis,]
 exData3[exData3$isAsiaCrisis==T,]
 ```
 
+```{r}
+a <-as.double(ymd("1997-06-01"))
+b <-as.double(ymd("1998-12-01"))
+dou <- as.double(exData3$期間) 
+isAsiaCrisis <- (dou-a) >=0 & (b-dou)>=0
+isAsiaCrisis
+exData3[isAsiaCrisis,]
+```
+
+```{r}
+logiAsiaCrisis <- exData3$isAsiaCrisis
+exData3[logiAsiaCrisis, ]
+```
+
+```{r}
+exData3[exData3$isAsiaCrisis==T ,]
+```
+
+8.1.2 範例2
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+names(transcriptDataFinal)
+```
+
+```{r}
+transcriptDataFinal[["學期成績"]]
+
+```
+
+```{r}
+transcriptDataFinal[transcriptDataFinal$學號 == "92aS67fee",]
+```
+
+
+
+以下是算出學號“92aS67fee”的平均成績（GPA）的程序
+```{r}
+studentID <-"92aS67fee" 
+transcriptDataFinal$學號==studentID -> logiChosenStudent
+sum(transcriptDataFinal$學期成績[logiChosenStudent]*
+  transcriptDataFinal$學分數[logiChosenStudent])/
+  sum(transcriptDataFinal$學分數[logiChosenStudent]) -> GPA
+GPA
+```
+
+8.1.1
+
+
+```{r}
+utility_cobb_douglass <- function(x,y,.alpha,.beta){
+  utilValue <- x^.alpha*y^.beta # 程序產生output值
+  return(utilValue) # 傳回output值
+}
+class(utility_cobb_douglass)
+```
+
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8)
+```
+
+```{r}
+num <- function(x,.alpha){
+  num1 <- x+.alpha # 程序產生output值
+  return(num1) # 傳回output值
+}
+num(2,4)
+```
+
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8) -> utilityValue
+```
+
+
+supply_fun()
+Qs=a+b∗P
+請寫一個供給函數supply_fun()，它有三個inputs：a,b及P; output為Qs。
+```{r}
+supplyfunction <- function(a,b,P){
+  Qs <- a + b*P
+  return(Qs)
+}
+```
+
+需求函數：
+Qd=c−d∗P
+請寫一個供給函數demand_fun()，它有三個inputs：c,d及P; output為Qd。
+```{r}
+demand_fun <- function(c,d,P){
+  Qd <- c-d*P
+  return(Qd)
+}
+```
+
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+```
+
+```{r}
+studentID <-"92aS67fee" 
+transcriptDataFinal$學號==studentID -> logiChosenStudent
+sum(transcriptDataFinal$學期成績[logiChosenStudent]*
+  transcriptDataFinal$學分數[logiChosenStudent])/
+  sum(transcriptDataFinal$學分數[logiChosenStudent]) -> GPA
+```
 
 
