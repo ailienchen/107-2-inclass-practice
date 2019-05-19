@@ -25,6 +25,12 @@ class(Mat1)
 typeof(Mat1)
 ```
 
+object extraction
+
+```{r}
+Mat1
+Mat1[[2]]
+```
 
 
 
@@ -69,10 +75,28 @@ StuDF
 ```
 
 ```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+
+```{r}
 class(StuDF$姓名)
 StuDF$姓名 <- as.character(StuDF$姓名)
 class(StuDF$姓名)
 ```
+
+```{r}
+StuDF2<- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors=FALSE
+  )
+StuDF2
+```
+
+
 
 Q:以list的角度取出胖虎的資料
 ```{r}
@@ -143,6 +167,7 @@ m
 
 ```{r}
 chosenLETTERS[8]
+
 ```
 
 ```{r}
@@ -150,11 +175,14 @@ matObj1
 ```
 ```{r}
 matObj1[3,2] 
+matObj1[c(F,F,TRUE,F,F),c(F,TRUE,F)]
 ```
 
 ```{r}
-matObj1[c(F,F,TRUE,F,F),c(F,TRUE,F)]
+matObj1
+matObj1[c(1,4),c(2,3)]
 ```
+以邏輯向量表達:
 ```{r}
 matObj1[c(T,F,F,T,F),c(F,T,T)]
 ```
@@ -168,19 +196,26 @@ Q:若只用[.] extraction, 如何取出matObj1[c(1,5),c(2,3)]的元素值？
 ```{r}
 library(readr)
 classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+class(classSurvey)
 ```
 Q:請取出性別及本學期學分數。
+從data frame視覺角度
 ```{r}
 classSurvey[c(1:60),c(4,5)]
 classSurvey[,c(4,5)]
 ```
-
+從R的角度(即單純list的角度)
 ```{r}
-#classSurvey[]
+# classSurvey[]
 classSurvey[c("性別","本學期學分數")]
+
 ```
 
+子樣本
 
+```{r}
+classSurvey[logical_index,]
+```
 
 
 
