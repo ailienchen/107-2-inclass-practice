@@ -239,6 +239,7 @@ utility_cobb_douglass <- function(x,y,.alpha,.beta){
   utilValue <- x^.alpha*y^.beta # 程序產生output值
   return(utilValue) # 傳回output值
 }
+utility_cobb_douglass 
 class(utility_cobb_douglass)
 ```
 
