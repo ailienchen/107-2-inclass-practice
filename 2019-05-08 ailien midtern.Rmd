@@ -14,6 +14,12 @@ library(lubridate); library(stringr); library(dplyr); library(readr); library(pu
 x <- as.character(round(runif(10)*100),10)
 x
 ```
+
+```{r}
+as.integer(x)#改成數字才可以和50比大小(as.numeric亦可)
+```
+
+
 ans:
 ```{r}
 logicBig <- (as.integer(x) > 50)
@@ -45,6 +51,16 @@ data3 <- list(
 ```{r}
 data3
 ```
+
+```{r}
+logiPass -> (data3$成績>=60)
+logiPass 
+passData<-list(
+  成績=data3$成績[logiPass] ,
+  學分數=data3$學分數[logiPass] ,
+)
+```
+
 
 ans:
 ```{r}
@@ -92,8 +108,8 @@ yearcharacter
 ```
 
 ```{r}
-as.integer(yearcharacter)+1911->westyear
-westyear
+as.integer(yearcharacter)+1911->westYears
+westYears
 ```
 
 5.3 西元年月日
