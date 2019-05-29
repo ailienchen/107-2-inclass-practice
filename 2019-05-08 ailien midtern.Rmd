@@ -170,7 +170,8 @@ sampledTranscriptData$學屆 <-
 sampledTranscriptData$系碼 <- 
   str_sub(sampledTranscriptData$學號,5,6)
 head(sampledTranscriptData$學號)
-sampledTranscriptData
+head(sampledTranscriptData$系碼)
+#sampledTranscriptData
 ```
 
 
@@ -187,8 +188,8 @@ sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$系級,"1","")
 sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"2","")
 sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"3","")
 sampledTranscriptData$學系 <- str_replace(sampledTranscriptData$學系,"4","")
-
-sampledTranscriptData$學系 
+head(sampledTranscriptData$學系)
+#sampledTranscriptData$學系 
 ```
 
 ```{r}
@@ -208,8 +209,8 @@ sampledTranscriptData$學系
 ```{r}
 (sampledTranscriptData$系碼!="73" & 
    sampledTranscriptData$學系=="經濟學系") -> logiCheck#系碼非73但是是經濟系學生
-sampledTranscriptData$學號[logiCheck] %>% unique() -> changeMajorStudent
-
+sampledTranscriptData$學號[logiCheck] 
+unique(sampledTranscriptData$學號[logiCheck] ) -> changeMajorStudent
 changeMajorStudent
 ```
 
@@ -235,7 +236,7 @@ list(
 
 ```{r}
 (sampledTranscriptData$學號 == "410073409b" &
-  sampledTranscriptData$學年==100 &
+  sampledTranscriptData$學年==101 &
   sampledTranscriptData$學期==1) -> logiSelect
   
 sum(sampledTranscriptData$學分數[logiSelect]*
