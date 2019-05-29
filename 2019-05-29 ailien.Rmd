@@ -105,7 +105,8 @@ demand_supply_fun <- function(P,a,b,c,d){
 
 
 8.2 依條件執行
-
+8.2.1 
+用法一
 ```{r}
 a <- readline(prompt = "請輸入一個數字： ")
 if(a < 0) {
@@ -122,4 +123,53 @@ supply_fun <- function(P,a,b){
 }
 supply_fun(P=-1,0,1)
 ```
+
+```{r}
+supply_fun2 <- function(P,a,b){
+  Qs <- a+b*P
+  if(P>=0) {
+    return(Qs)
+  }
+}
+supply_fun2(P=-1,0,1)
+supply_fun2(P=2,0,1)
+```
+
+8.2.2 
+用法二
+
+```{r}
+a <-  readline(prompt = "請輸入一個數字： ")
+if(a < 0) {
+  print("a為負值")
+} else {
+  print("a不為負值")
+}
+```
+
+
+```{r}
+supply_fun3 <- function(P,a,b){
+  Qs <- a+b*P
+  if(P < 0) {
+    message("P不能為負值") # 在螢幕出現的「錯誤」提示，沒有輸出任何值
+  } else {
+    return(Qs)
+  }
+}
+supply_fun3(P=-1,0,1)->yy
+supply_fun3(P=2,0,1)
+```
+
+修改範例2的gpa_fun, 若輸入學號不存在則在螢幕顯示“查無此學號”。
+
+```{r}
+gpa_fun("92aS67fee") # 顯示82.85276
+gpa_fun("aa829838s") # 查無此學號
+```
+
+
+
+
+
 
