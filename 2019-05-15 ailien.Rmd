@@ -131,7 +131,8 @@ b
 
 
 
-
+mid-tern 
+6.2
 
 ```{r}
 library(readr)
@@ -165,15 +166,17 @@ class(A)
 增加一個「isAsiaCrisis」的logical變數，其值為TRUE若「期間」介於1997-06-01到1998-12-01（含前後）。
 
 ```{r}
-isAsiaCrisis <- (exData3$期間 >= "1997-06-01" & exData3$期間 <= "1998-12-01")
+isAsiaCrisis <- (exData3$期間>= "1997-06-01" & exData3$期間 <= "1998-12-01")
 isAsiaCrisis
+exData3$isAsiaCrisis<- (exData3$期間>=ymd("1997-06-01")& exData3$期間<=ymd("1998-12-01"))
+class(exData3$isAsiaCrisis)
 ```
 
 利用「isAsiaCrisis」值，結合使用[.R,.C]取出1997-06-01到1998-12-01亞洲金融危機的子樣本。
 
 ```{r}
-logiAsiaCrisis<-exData3$isAsiaCrsis
-exData3[logiAsiaCrisis,]
+logiAsiaCrisis <- exData3$isAsiaCrisis
+exData3[logiAsiaCrisis, ]
 ```
 或合寫在一起
 
@@ -190,14 +193,9 @@ isAsiaCrisis
 exData3[isAsiaCrisis,]
 ```
 
-```{r}
-logiAsiaCrisis <- exData3$isAsiaCrisis
-exData3[logiAsiaCrisis, ]
-```
 
-```{r}
-exData3[exData3$isAsiaCrisis==T ,]
-```
+
+
 
 8.1.2 範例2
 
