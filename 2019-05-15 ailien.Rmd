@@ -125,14 +125,6 @@ b$新元素B <- c(T,F,T)
 b
 ```
 
-期中考6.2
-
-
-
-
-
-mid-tern 
-6.2
 
 ```{r}
 library(readr)
@@ -146,7 +138,6 @@ exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/mas
 ```{r}
 class(exData3)
 names(exData3)
-exData3[[3]]
 ```
 
 
@@ -208,18 +199,16 @@ transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/git
 names(transcriptDataFinal)
 ```
 
-```{r}
-transcriptDataFinal[["學期成績"]]
 
-```
+
+
+以下是算出學號“92aS67fee”的平均成績（GPA）的程序
 
 ```{r}
 transcriptDataFinal[transcriptDataFinal$學號 == "92aS67fee",]
 ```
 
 
-
-以下是算出學號“92aS67fee”的平均成績（GPA）的程序
 ```{r}
 studentID <-"92aS67fee" 
 transcriptDataFinal$學號==studentID -> logiChosenStudent
@@ -255,6 +244,7 @@ num(2,4)
 
 ```{r}
 utility_cobb_douglass(1,2,0.5,0.8) -> utilityValue
+utilityValue
 ```
 
 
@@ -279,23 +269,43 @@ demand_fun <- function(c,d,P){
 ```
 
 ```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+
+```{r}
+studentID <-"92aS67fee" 
+transcriptDataFinal$學號==studentID -> logiChosenStudent
+
+subSample <- transcriptDataFinal[logiChosenStudent,]
+
+sum(subSample$學期成績*subSample$學分數)/
+  sum(subSample$學分數) -> GPA
+```
+
+
+
+```{r}
 gpa_fun <- function(studentID){
   transcriptDataFinal$學號==studentID -> logiChosenStudent
-
+  
   subSample <- transcriptDataFinal[logiChosenStudent,]
-
+  
   sum(subSample$學期成績*subSample$學分數)/
     sum(subSample$學分數) -> GPA
   return(GPA)
 }
 ```
 
-```{r}
-studentID <-"92aS67fee" 
-transcriptDataFinal$學號==studentID -> logiChosenStudent
-sum(transcriptDataFinal$學期成績[logiChosenStudent]*
-  transcriptDataFinal$學分數[logiChosenStudent])/
-  sum(transcriptDataFinal$學分數[logiChosenStudent]) -> GPA
-```
+
+
+
+
+
+
+
+
+
 
 
