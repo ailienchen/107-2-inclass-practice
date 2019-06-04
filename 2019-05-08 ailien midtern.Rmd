@@ -105,12 +105,11 @@ twDates
 str_sub(twDates,3,5)->yearcharacter
 yearcharacter
 
-```
-
-```{r}
 as.integer(yearcharacter)+1911->westYears
 westYears
 ```
+
+
 
 5.3 西元年月日
 將twDates民國年月轉成date class的西元年月日，原始資料沒有日，請設定成每月1日。例如：“民國100年5月”會轉成2011-05-01的date class日期。答案請存westDates答案物件。
@@ -124,11 +123,14 @@ monthList
 unlist(monthList)->monthvector# 將list疊成字串向量
 monthvector
 str_c(as.character(westYears),monthvector,"01",sep="-")->westDates
-# 貼成YYYY-MM-DD 字串格式
+# 貼成YYYY-MM-DD 字串格式(請設定成每月1日)
 westDates
 ymd(westDates)->westDates# 轉成dates
 westDates
 ```
+
+
+
 
 7 成績單 sampledTranscriptData
 請先執行以下程式取得學生成績單資料sampledTranscriptData，它是個list class的物件。
@@ -244,6 +246,24 @@ sum(sampledTranscriptData$學分數[logiSelect]*
 
 studentGPA
 ```
+
+6.1
+```{r}
+library(readr)
+invoiceList <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/invoiceList.csv",
+col_types = cols(訂單時間.以訂單時區顯示. = col_character()))
+```
+
+```{r}
+names(invoiceList)[[2]] <- "訂單時區之下單時間"
+invoiceList 
+```
+
+
+
+
+
+
 
 6.2
 ```{r}
