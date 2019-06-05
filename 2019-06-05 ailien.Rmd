@@ -9,3 +9,164 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+#function usage
+
+```{r}
+utility_cobb_douglass <- function(x,y,.alpha,.beta){
+  utilValue <- x^.alpha*y^.beta # 程序產生output值
+  return(utilValue) # 傳回output值
+}
+```
+
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8)
+```
+
+```{r}
+utility_cobb_douglass(1,2,.beta=0.8,.alpha=0.5)#因為有給名稱所以改位置結果不變
+```
+
+```{r}
+utility_cobb_douglass(.beta=0.8,.alpha=0.5,1,2)
+```
+
+9.1 Sequence
+
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/loopTranscriptData.Rda?raw=true"))
+```
+
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+  
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+  
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+```
+
+
+
+```{r}
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+studentIds
+```
+
+sequence_source
+
+```{r}
+# 以前5筆學號為sequence_source
+studentIds5 <- studentIds[1:5]
+studentIds5
+```
+
+9.1.1 作法一：
+
+```{r}
+for(i in studentIds5){
+  print(i) # 印出studentIds5[[i]]
+}
+```
+
+```{r}
+gpa_fun(studentIds5[[1]])
+for(i in studentIds5){
+   print(i) 
+   print(gpa_fun(i)) # 印出studentIds5[[i]]
+}
+```
+
+
+
+9.1.2 作法二：
+
+```{r}
+for(i in c(1:5)){
+  print(i) 
+  print(studentIds5[[i]])
+}
+```
+
+9.1.3 作法三：seq_along()
+
+```{r}
+seq_along(studentIds5)
+```
+
+
+
+```{r}
+for(i in seq_along(studentIds5)){
+  print(studentIds5[[i]])
+}
+```
+
+範例2
+任務：一一檢查gmailAddress每個元素，若沒有寫"@gmail.com"則加上。
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+作法一
+
+```{r}
+for(i in gmailAddress){
+  print(i) 
+}
+```
+
+```{r}
+for(i in gmailAddress){
+  print(i)
+}
+```
+
+作法二
+
+```{r}
+for(i in c(1:4)){
+  print(i) 
+  print(gmailAddress[[i]])
+}
+```
+
+```{r}
+for(i in c(1:4)){
+  print(i)
+  print(gmailAddress[[i]])
+}
+```
+
+作法三
+
+```{r}
+for(i in seq_along(gmailAddress)){
+  print(gmailAddress[[i]])
+}
+```
+
+```{r}
+for(i in seq_along(gmailAddress)){
+  print(i)
+  print(gmailAddress[[i]])
+}
+```
+
+
+
+
+
+
+
+
+
+
