@@ -43,19 +43,6 @@ for(i in seq_along(studentIds5)){
 }
 ```
 
-## for loop 
-
-使用以下for loop模式，完成對「每個」的任務。
-for(i in seq_along(sequence_source)){
-  body
-}
-```{r}
-for(i in seq_along(studentIds5)){
-  print(studentIds5[[i]])
-}
-```
-
-
 
 #範例2
 
@@ -70,10 +57,28 @@ gmailAddress <- c(
 )
 ```
 
-##body
-
+## body
+任務：檢查gmailAddress「第i個」元素(令i<-1)，若沒有寫“@gmail.com”則加上。
 ```{r}
-##body
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+i<-2
+library(stringr)
+# 檢查strgmailAddress[[i]]有沒有寫@gmail.com,
+#  若沒有，加上。
+if(!str_detect(gmailAddress[[i]],"@gmail.com")){
+  correctGmailAddress <-
+    str_c(gmailAddress[[i]],"@gmail.com")
+  gmailAddress[[i]] <- correctGmailAddress
+}
+```
+
+## for loop
+```{r}
 # 開始設定
 gmailAddress <- c(
   "tim@gmail.com",
@@ -83,8 +88,6 @@ gmailAddress <- c(
 )
 cat("起始狀況\n")
 gmailAddress
-
-library(stringr)
 # for loop
 for(i in seq_along(gmailAddress)){
   if(!str_detect(gmailAddress[[i]],"@gmail.com")){
@@ -93,10 +96,10 @@ for(i in seq_along(gmailAddress)){
     gmailAddress[[i]] <- correctGmailAddress
   }
 }
-
 cat("修正後狀況\n")
 gmailAddress
 ```
+
 
 練習
 
@@ -104,39 +107,24 @@ gmailAddress
 load(url("https://www.dropbox.com/s/qnz9paigf61yjus/commitHistory.Rda?raw=1"))
 ```
 
-任務0：print「每個」commit的author等於committer的邏輯判斷結果。
+任務0：print「每個」commit的author。
 
-sequence source
+## sequence source
 ```{r}
 commitHistory
 ```
 
-body
+
+## body
+print「第i個」commit的author。
 
 ```{r}
-i <- 1
-(commitHistory[[i]][["commit"]][["author"]][["name"]]==commitHistory[[i]][["commit"]][["committer"]][["name"]]) -> logiResult
-print(logiResult)
-```
-
-for loop
-
-```{r}
-for(i in seq_along(commitHistory)){
-  (commitHistory[[i]][["commit"]][["author"]][["name"]]==
-     commitHistory[[i]][["commit"]][["committer"]][["name"]]) ->
-    logiResult
-  print(logiResult)  
-}
+i<-1
+print(commitHistory[[i]][["commit"]][["author"]][["name"]])
 ```
 
 
-```{r}
-i <- 1
-print(commitHistory[[i]][["commit"]][["author"]][["names"]])
-```
-
-##for loop
+## for loop
 
 ```{r}
 for(i in seq_along(commitHistory)){
@@ -147,10 +135,20 @@ for(i in seq_along(commitHistory)){
 
 ```{r}
 for(i in seq_along(commitHistory)){
-  (commitHistory[[i]][["commit"]][["committer"]][["name"]])==(commitHistory[[i]][["commit"]][["author"]][["name"]]) ->logiresult
-  print(logiresult)
+  print(
+    str_c(
+      "Author is ",
+      commitHistory[[i]][["commit"]][["author"]][["name"]],
+      ". Committer is ",
+      commitHistory[[i]][["commit"]][["committer"]][["name"]]
+      )
+    )
 }
 ```
+
+```
+
+
 任務一：存下來每個commit的author。
 0. saving container
 ```{r}
@@ -215,24 +213,61 @@ for(i in seq_along(commitHistory)){
 
 saveCommitCommitter
 ```
-任務三：存下來每個author與committer同人的commitDate
+任務三：存下來每個author與committer同人的commitDate。
+
+過渡任務：
+存下來每個commit的author, committer, commitDate.
+存下來每個commit的author==commiter的結果
+
+0. saving container
 
 ```{r}
-
+saveEveryThing <- vector("list",length(commitHistory))
+saveSameLogi <- vector("logical",length(commitHistory))
 ```
 
-
+1. sequence source
 ```{r}
+commitHistory
+```
+2. body
+```{r}
+i <- 1
+
+author_i <- commitHistory[[i]]$commit$author$name
+committer_i <- commitHistory[[i]]$commit$committer$name
+commitDate_i <- commitHistory[[i]]$commit$committer$date
+
+(author_i==committer_i) -> saveSameLogi[[i]]
+list(
+  author=author_i,
+  committer=committer_i,
+  commitDate=commitDate_i
+) -> saveEveryThing[[i]]
+##檢查一下
+saveEveryThing
+saveSameLogi
+```
+3. for loop
+```{r}
+saveEveryThing <- vector("list",length(commitHistory))
+saveSameLogi <- vector("logical",length(commitHistory))
 for(i in seq_along(commitHistory)){
-  print(
-    str_c(
-      "Author is ",
-      commitHistory[[i]][["commit"]][["author"]][["name"]],
-      ". Committer is ",
-      commitHistory[[i]][["commit"]][["committer"]][["name"]]
-      )
-    )
-}
+  author_i <- commitHistory[[i]]$commit$author$name
+  committer_i <- commitHistory[[i]]$commit$committer$name
+  commitDate_i <- commitHistory[[i]]$commit$committer$date
+
+  (author_i == committer_i) -> saveSameLogi[[i]]
+
+  list(
+    author=author_i,
+    committer=committer_i,
+    commitDate=commitDate_i
+  ) -> saveEveryThing[[i]]  
+saveEveryThing
+print(saveSameLogi)
+saveEveryThing[saveSameLogi] -> saveValidCommitDate
+saveValidCommitDate
 ```
 
 9.2 Output
