@@ -47,7 +47,7 @@ str_smallClosest
 ```
 
 ```{r}
-str_smallClosest(c("105","101","99"),100)
+str_smallClosest(c(1:50),100)
 ```
 
 3.1
@@ -111,6 +111,8 @@ search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
 
 search_courseRules
 ```
+
+
 
 3.3
 search_courseRules_flexible(entranceYear,courseSelectionInfo)
@@ -187,4 +189,14 @@ search_courseRules_flexible
 search_courseRules_flexible(102,EconCourseSelectionInfo)
 ```
 
+3.4
+
+```{r}
+EconCourseSelectionInfo2 <- EconCourseSelectionInfo
+names(EconCourseSelectionInfo2)[[3]] <- "106"
+EconCourseSelectionInfo2[["107"]]$`線上志願選課辦法` <- 
+  "http://www.econ.ntpu.edu.tw/econ/files/Way/20180712122237.pdf"
+
+EconCourseSelectionInfo2
+```
 

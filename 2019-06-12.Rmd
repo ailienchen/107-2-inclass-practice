@@ -86,7 +86,7 @@ gmailAddress <- c(
   "yellen@gmail.com",
   "huang@gmail.com"
 )
-cat("起始狀況\n")
+
 gmailAddress
 # for loop
 for(i in seq_along(gmailAddress)){
@@ -96,7 +96,7 @@ for(i in seq_along(gmailAddress)){
     gmailAddress[[i]] <- correctGmailAddress
   }
 }
-cat("修正後狀況\n")
+
 gmailAddress
 ```
 
