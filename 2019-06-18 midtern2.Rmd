@@ -47,7 +47,7 @@ str_smallClosest
 ```
 
 ```{r}
-str_smallClosest(c(1:50),100)
+str_smallClosest(c(1:50),45)
 ```
 
 3.1
