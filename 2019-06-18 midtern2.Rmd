@@ -47,6 +47,16 @@ str_smallClosest
 ```
 
 ```{r}
+str_smallClosest<-function(chrNumber,criticalNumber){
+  as.numeric(chrNumber)->numNumber
+  logiTrue<- numNumber <=criticalNumber
+  max(numNumber[logiTrue])->MaxNum
+  return(as.character(MaxNum))
+}
+str_smallClosest
+```
+
+```{r}
 str_smallClosest(c(1:50),45)
 ```
 
